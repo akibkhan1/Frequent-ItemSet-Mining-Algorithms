@@ -2,9 +2,9 @@ import csv
 import pandas as pd
 from itertools import combinations
 
-def apriori(data,minsup,minconf):
+def apriori(data_path,minsup,minconf):
 
-
+    data = pd.read_csv(data_path)
     minsup=minsup*len(data)
 
     #Add all data in a list of lists
