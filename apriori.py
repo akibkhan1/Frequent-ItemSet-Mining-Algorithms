@@ -34,7 +34,7 @@ def apriori(data_path,minsup=0.5,minconf=0.7):
     for i in count[1].copy():
         if(count[1][i]<minsup):
             count[1].pop(i)
-    count[1].pop("nan")
+    #count[1].pop("nan")
 
     #Generate frequent two item sets
     slist=[list() for x in range(33)]

@@ -32,7 +32,7 @@ def fpgrowth(data_path,minsup,minconf):
     for i in count[1].copy():
         if(count[1][i]<minsup):
             count[1].pop(i)
-    count[1].pop('nan')
+    #count[1].pop('nan')
 
     #Storing transactions as lists without infrequent items
     a=list(count[1])
