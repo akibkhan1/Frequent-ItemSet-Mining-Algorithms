@@ -229,3 +229,23 @@ def fpgrowth(data_path,minsup,minconf):
                                 else:
                                     print(n,"(",ant[l][n],")","--->",r,"(",ant[len(r)][r],")", " conf(",(ant[len(j)][j]/ant[l][n]),")")
 
+if __name__ == "__main__":
+    optparser = OptionParser()
+    optparser.add_option('-f', '--inputFile',
+                         dest='inputFile',
+                         help='CSV filename',
+                         default=None)
+    optparser.add_option('-s', '--minSupport',
+                         dest='minSup',
+                         help='Min support (float)',
+                         default=0.5,
+                         type='float')
+    optparser.add_option('-c', '--minConfidence',
+                         dest='minConf',
+                         help='Min confidence (float)',
+                         default=0.5,
+                         type='float')
+
+    (options, args) = optparser.parse_args()
+
+    fpgrowth(options.inputFile, options.minSup, options.minConf)

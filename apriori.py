@@ -1,12 +1,12 @@
 import csv
 import pandas as pd
 from itertools import combinations
+from optparse import OptionParser
 
-def apriori(data_path,minsup,minconf):
-
+def apriori(data_path,minsup=0.5,minconf=0.7):
+    
     data = pd.read_csv(data_path)
     minsup=minsup*len(data)
-
     #Add all data in a list of lists
     items = []  
     for i in range(0, len(data)):  
@@ -177,3 +177,24 @@ def apriori(data_path,minsup,minconf):
                                 else:
                                     print(n,"(",ant[l][n],")","-->",r,"(",ant[len(r)][r],")", " confidence = ",(ant[len(j)][j]/ant[l][n]))
 
+if __name__ == "__main__":
+    optparser = OptionParser()
+    optparser.add_option('-f', '--inputFile',
+                         dest='inputFile',
+                         help='CSV filename',
+                         default=None)
+    optparser.add_option('-s', '--minSupport',
+                         dest='minSup',
+                         help='Min support (float)',
+                         default=0.5,
+                         type='float')
+    optparser.add_option('-c', '--minConfidence',
+                         dest='minConf',
+                         help='Min confidence (float)',
+                         default=0.5,
+                         type='float')
+
+    (options, args) = optparser.parse_args()
+
+    apriori(options.inputFile, options.minSup, options.minConf)
+        
